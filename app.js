@@ -2,7 +2,7 @@ if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
 
-console.log(process.env.CLOUD_API_SECRET);
+
 
 const express = require('express');
 const app = express();
@@ -71,12 +71,11 @@ const sessionOptions = {
     resave: false,
     saveUninitialized: true,
     cookie: {
-        httpOnly: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 1 week        
+        httpOnly: true,       
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 };
-
+app.set("trust proxy", 1);
 app.use(session(sessionOptions));
 app.use(flash());
 
@@ -112,6 +111,9 @@ app.use((req, res, next) => {
 // app.get('/', (req, res) => {
 //     res.send('Hello World!');
 // });
+app.get('/', (req, res) => {
+    res.redirect('/listings');
+});
 
 app.use('/listings', listing);
 app.use('/listings/:id/reviews', review);
@@ -154,6 +156,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(8080, () => {
-    console.log("Server is listening on port 8080");
+const port = process.env.PORT || 8080;
+app.listen(port, "0.0.0.0", () => {
+    console.log("Server is listening on port", port);
 });
