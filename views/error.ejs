@@ -1,8 +1,6 @@
-```ejs
 <% layout('layouts/boilerplate') -%>
 
 <div class="alert alert-danger" role="alert">
     <%= err && err.message ? err.message :
         (typeof message !== 'undefined' ? message : 'Something went wrong!') %>
 </div>
-```
