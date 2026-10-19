@@ -2,12 +2,14 @@
   "engines": {
     "node": "22.14.0"
   },
+  
   "name": "airbnb-small-version-pro",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "start": "node app.js",
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
